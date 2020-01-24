@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<div class="site-section py-0">
+    <div class="owl-carousel hero-slide owl-style">
+        @foreach (var slider in Model.Sliders)
+        {
+            <div class="site-section">
+                <div class="container">
+                    <div class="half-post-entry d-block d-lg-flex bg-light">
+                        <div class="img-bg" style="background-image: url('../images/@slider.Image')"></div>
+                        <div class="contents">
+                            <h2><a href="blog-single.html">@slider.Title</a></h2>
+                            <p class="mb-3">
+                                @slider.Description
+                            </p>
+
+                            <!--  <div class="post-meta">
+                            <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">Food</a></span>
+                            <span class="date-read">
+                            Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span>
+                            </span>
+                            </div>-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
