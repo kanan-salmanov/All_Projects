@@ -1,0 +1,75 @@
+﻿@model BlogTempCrud.ViewModels.UserStatusModels
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = "~/Areas/BlogAdmin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UpdateUser</h2>
+
+
+
+<div class="row-fluid">
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Slideri düzəliş edin</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <form asp-controller="User" asp-action="UpdateUser" enctype="multipart/form-data" method="post" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Adı :</label>
+                    <div class="controls">
+                        <input asp-for="Users.Name" type="text" class="span11" name="Name" value="@Model.Users.Name" required />
+                        <span asp-validation-for="Users.Name" class="text-danger span11"></span>
+                        <input type="hidden" name="Id" value="@Model.Users.Id" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Soyadı :</label>
+                    <div class="controls">
+                        <input asp-for="Users.Lastname" type="text" class="span11" name="Lastname" value="@Model.Users.Lastname" required />
+                        <span asp-validation-for="Users.Lastname" class="text-danger span11"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Email :</label>
+                    <div class="controls">
+                        <input asp-for="Users.Email" type="email" class="span11" name="Email" value="@Model.Users.Email" required />
+                        <span asp-validation-for="Users.Email" class="text-danger span11"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Köhnə Parol :</label>
+                    <div class="controls">
+                        <input asp-for="Users.Password" type="password" class="span11" name="Password" placeholder="Parolunuzu daxil edin " required />
+                        <span asp-validation-for="Users.Password" class="text-danger span11"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Yeni Parol :</label>
+                    <div class="controls">
+                        <input asp-for="Users.Password" type="password" class="span11" name="NewPassword" placeholder="Yeni parolu daxil edin " required />
+                        <span asp-validation-for="Users.Password" class="text-danger span11"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Status :</label>
+                    <div class="controls">
+                        <select name="StatusId">
+                            @foreach (var status in Model.Statuses)
+                            {
+                                <option value="@status.Id">@status.StatusName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

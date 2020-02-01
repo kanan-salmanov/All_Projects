@@ -1,0 +1,74 @@
+﻿@model BlogTempCrud.ViewModels.UserStatusModels
+@{
+    ViewData["Title"] = "AddUser";
+    Layout = "~/Areas/BlogAdmin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Add User</h5>
+                </div>
+                <div id="register-form" class="widget-content nopadding">
+                    
+                    <form asp-controller="User" asp-action="AddUser" id="form" method="post" class="form-horizontal">
+                        <span style="margin:10px;color:red;font-weight:bold;font-size:15px"> @ViewData["ErrorMessage"]</span>
+                        <div class="control-group">
+                            <label class="control-label">FirstName :</label>
+                            <div class="controls">
+                                <input asp-for="Users.Name" type="text" name="Name" id="name" class="span11" placeholder="Firstname" required />
+                                <span asp-validation-for="Users.Name" class="text-danger span11"></span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">LastName :</label>
+                            <div class="controls">
+                                <input asp-for="Users.Lastname" type="text" name="Lastname" id="lastname" class="span11" placeholder="Lastname" required />
+                                <span asp-validation-for="Users.Lastname" class="text-danger span11"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label" >Email :</label>
+                            <div class="controls">
+                                <input asp-for="Users.Email" type="email" name="Email" class="span11" placeholder="Email" required />
+                                <span asp-validation-for="Users.Email" class="text-danger span11"></span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Password :</label>
+                            <div class="controls">
+                                <input asp-for="Users.Password" type="password" name="Password" id="password" class="span11" placeholder="Password" required/>
+                                <span asp-validation-for="Users.Password" class="text-danger span11"></span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">RE-Password :</label>
+                            <div class="controls">
+                                <input asp-for="Users.Password" type="password" name="RePassword"  class="span11" placeholder="Repeat Password" required/>
+                                <span asp-validation-for="Users.Password" class="text-danger span11"></span>
+                                <span class="span11">@ViewData["Name"]</span> 
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Status :</label>
+                            <div class="controls">
+                                <select name="StatusId">
+                                    @foreach (var status in Model.Statuses)
+                                    {
+                                    <option value="@status.Id">@status.StatusName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -21,10 +21,10 @@ namespace BlogTempCrud.Controllers
         {
             HomeModels homeModel = new HomeModels
             {
-               Sliders = _context.Sliders,
-               BlogDatas = _context.BlogDatas,
-               Users = _context.Users,
-               Statuses = _context.Statuses
+               Sliders = _context.Sliders.ToList(),
+               BlogDatas = _context.BlogDatas.LastOrDefault(),
+               Users = _context.Users.ToList(),
+               Statuses = _context.Statuses.ToList()
             };
             return View(homeModel);
         }

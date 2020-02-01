@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BlogData>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/BlogAdmin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row" style="margin-left:0px">
+
+    <div class="col-12">
+
+        <div class="widget-box">
+
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-th"></i> </span>
+                <h5>BlogData</h5>
+                <span style="float:right;padding:5px;"> <a href="@Url.Action("AddBlogData","BlogData")" style="border-radius:5px " class="btn btn-primary">Add News</a></span>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>User ID</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var news in Model)
+                        {
+                            <tr class="center">
+                                <td> @news.Title </td>
+                                <td>
+                                    @if (news.Description.Length > 40)
+                                    {
+                                        @(news.Description.Substring(0, 40) + "...");
+                                    }
+                                    else
+                                    {
+                                        @news.Description
+                                    }
+                                </td>
+                                <td><img src="~/@news.Image.Remove(0, 8)" style="height:200px" alt="Alternate Text" /></td>
+                                <td>@news.User.Name</td>
+                                <td class="center">
+                                    <a asp-action="Details" asp-route-id="@news.Id" class="btn btn-success">
+                                        <i class="icon-eye-open"></i>
+                                    </a>
+                                    <a asp-action="UpdateBlogData" asp-route-id="@news.Id" class="btn btn-warning">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@news.Id" class="btn btn-danger">
+                                        <i class="icon-trash"></i>
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

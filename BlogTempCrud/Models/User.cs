@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlogTempCrud.Models
 {
-    public class User
+    public class User 
     {
         public int Id { get; set; }
         [Required, StringLength(200)]
@@ -18,10 +18,10 @@ namespace BlogTempCrud.Models
         [Required, StringLength(200)]
         public string Password { get; set; }
 
-        public virtual ICollection<BlogData> Blogdatas { get; set; }
+        public  List<BlogData> BlogDatas { get; set; }
 
         public int StatusId { get; set; }
-        public virtual Status Status { get; set; }
+        public Status Status { get; set; }
 
     }
 }

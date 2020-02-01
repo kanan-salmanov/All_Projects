@@ -14,6 +14,6 @@ namespace BlogTempCrud.Models
         [Required, StringLength(500)]
         public string StatusDescription { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

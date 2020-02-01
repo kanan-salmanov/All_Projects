@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BlogTempCrud.Middleware;
+
 
 namespace BlogTempCrud
 {
@@ -27,6 +29,13 @@ namespace BlogTempCrud
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession(options=> 
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
 
             services.AddDbContext<AppDbContext>(options=> {
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
@@ -56,10 +65,24 @@ namespace BlogTempCrud
                 app.UseHsts();
             }
 
+            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseMvc();
+            app.UseSession();
+            app.UseMiddleware<AuthenticationMiddleware>();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                );
+            });
+
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

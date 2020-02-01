@@ -1,0 +1,37 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/BlogAdmin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete User</h2>
+
+<div class="container-fluid">
+    <div class="widget-box">
+        <div class="row" style="margin-left:10px">
+            <div class="col-12">
+                <p>Name : @Model.Name </p>
+                <p>Lastname: @Model.Lastname</p>
+                <p>Email : @Model.Email</p>
+                <br />
+                <br />
+                <p class="text-danger">Are you sure delete this data?</p>
+                <br />
+            </div>
+        </div>
+
+        <div class="row" style="margin-left:10px">
+            <div class="col-12">
+                <form method="post">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                </form>
+            </div>
+        </div>
+        <div class="row" style="margin-left:10px">
+            <div class="col-12">
+                <hr />
+                <a asp-action="Index"><i class="icon-arrow-left"></i> Go back</a>
+            </div>
+        </div>
+    </div>
+</div>

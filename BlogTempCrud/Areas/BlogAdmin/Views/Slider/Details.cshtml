@@ -1,0 +1,25 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/BlogAdmin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="container-fluid">
+    <div class="widget-box">
+        <div class="row" style="margin-left:10px">
+            <div class="col-12">
+                <h3>@Model.Title</h3>
+                <p>@Model.Description</p>
+                <img src="/@Model.Image.Remove(0, 8)" style="max-height:320px" alt="Alternate Text" />
+            </div>
+        </div>
+        <div class="row" style="margin-left:10px">
+            <div class="col-12">
+                <hr />
+                <a asp-action="Index"><i class="icon-arrow-left"></i> Go back</a>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "Slider";
+}
+<div class="row" style="margin-left:0px">
+
+    <div class="col-12">
+
+        <div class="widget-box">
+
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-th"></i> </span>
+                <h5>Slider</h5>
+                <span style="float:right;padding:5px;"> <a href="@Url.Action("AddSlider","Slider")" style="border-radius:5px " class="btn btn-primary">Add Slider</a></span>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int count = 1;}
+                        @foreach (var slider in Model)
+                        {
+                            <tr class="odd gradeX">
+                                <td class="center">@count</td>
+                                <td>@slider.Title</td>
+                                <td>
+                                    @if (slider.Description.Length > 40)
+                                    {
+                                        @(slider.Description.Substring(0, 40)+"...");
+                                    }
+                                    else {
+                                        @slider.Description
+                                    }
+
+
+                                </td>
+                                <td><img src="/@slider.Image.Remove(0, 8)" style="max-height:200px" alt="Alternate Text" /></td>
+                                <td class="center">
+                                    <a asp-action="Details" asp-route-id="@slider.Id" class="btn btn-success">
+                                        <i class="icon-eye-open"></i>
+                                    </a>
+                                    <a asp-action="UpdateSlider" asp-route-id="@slider.Id" class="btn btn-warning">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@slider.Id" class="btn btn-danger">
+                                        <i class="icon-trash"></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            count++;
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

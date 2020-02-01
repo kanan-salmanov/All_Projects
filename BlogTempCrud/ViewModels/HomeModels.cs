@@ -10,7 +10,7 @@ namespace BlogTempCrud.ViewModels
     {
         public IEnumerable<Slider> Sliders { get; set; }
         public IEnumerable<User> Users { get; set; }
-        public IEnumerable<BlogData> BlogDatas { get; set; }
+        public BlogData BlogDatas { get; set; }
         public IEnumerable<Status> Statuses { get; set; }
     }
 }
